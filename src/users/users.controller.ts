@@ -10,9 +10,9 @@ import {
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { ApiCreatedResponse } from '@nestjs/swagger';
+import { ApiConflictResponse, ApiCreatedResponse } from '@nestjs/swagger';
 import UserModel from './model/user.model';
-// import UserModel from './model/user.model';
+import { ConflictException } from './exceptions/exceptions';
 
 @Controller('users')
 export class UsersController {
@@ -21,6 +21,10 @@ export class UsersController {
   @ApiCreatedResponse({
     description: 'User has been successfully created.',
     type: UserModel,
+  })
+  @ApiConflictResponse({
+    description: 'User already exists.',
+    type: ConflictException,
   })
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
