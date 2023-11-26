@@ -73,8 +73,11 @@ export class UsersController {
     return this.usersService.update(id, updateUserDto);
   }
 
-  @Delete(':id')
+  @ApiOkResponse({
+    description: 'User have been successfully deleted.',
+  })
+  @Delete('/id/:id')
   remove(@Param('id') id: string) {
-    return this.usersService.remove(+id);
+    return this.usersService.remove(id);
   }
 }

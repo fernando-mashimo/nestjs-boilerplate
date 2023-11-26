@@ -2,11 +2,12 @@ import {
   Injectable,
   ConflictException,
   InternalServerErrorException,
+  NotFoundException,
 } from '@nestjs/common';
 import UserModel from './model/user.model';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { ExceptionsHandler } from '@nestjs/core/exceptions/exceptions-handler';
 
@@ -37,6 +38,7 @@ export class UsersService {
       const users = await this.userModel.find().exec();
       if (!users.length) {
         console.log('No users found');
+        throw new NotFoundException('No users found');
       }
       return users;
     } catch (error) {
@@ -49,6 +51,7 @@ export class UsersService {
       const user = await this.userModel.findById(id).exec();
       if (!user) {
         console.log('User not found');
+        throw new NotFoundException('User not found');
       }
       return user;
     } catch (error) {
@@ -64,6 +67,7 @@ export class UsersService {
       const user = await this.userModel.findOne({ email }).exec();
       if (!user) {
         console.log('User not found');
+        throw new NotFoundException('User not found');
       }
       return user;
     } catch (error) {
@@ -81,6 +85,7 @@ export class UsersService {
         .exec();
       if (!user) {
         console.log('User not found');
+        throw new NotFoundException('User not found');
       }
       return user;
     } catch (error) {
@@ -88,7 +93,17 @@ export class UsersService {
     }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async remove(unformattedId: string): Promise<string | ExceptionsHandler> {
+    try {
+      const id = new Types.ObjectId(unformattedId);
+      const userToBeDeleted = await this.userModel.findByIdAndDelete(id).exec();
+      if (!userToBeDeleted) {
+        console.log('User not found');
+        return 'User not found';
+      }
+      return 'User successfully deleted';
+    } catch (error) {
+      throw new InternalServerErrorException(error.message);
+    }
   }
 }
