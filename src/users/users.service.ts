@@ -1,13 +1,14 @@
 import {
-  BadRequestException,
-  ConflictException,
   Injectable,
+  ConflictException,
+  InternalServerErrorException,
 } from '@nestjs/common';
+import UserModel from './model/user.model';
+import { IException } from './exceptions/exceptions';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-import UserModel from './model/user.model';
 
 @Injectable()
 export class UsersService {
@@ -15,24 +16,29 @@ export class UsersService {
     @InjectModel('User') private readonly userModel: Model<UserModel>,
   ) {}
 
-  async create(createUserDto: CreateUserDto) {
+  async create(createUserDto: CreateUserDto): Promise<UserModel> {
     try {
       const createdUser = await this.userModel.create(createUserDto);
+      console.log('User successfully created');
       return createdUser;
     } catch (error) {
       if (error.code === 11000) {
         throw new ConflictException('User already exists');
+      } else {
+        throw new InternalServerErrorException(error.message);
       }
-      throw new BadRequestException('Error creating user');
     }
   }
 
-  async findAll() {
+  async findAll(): Promise<UserModel[] | IException> {
     try {
-      const users = await this.userModel.find({});
+      const users = await this.userModel.find().exec();
+      if (!users) {
+        console.log('No users found');
+      }
       return users;
     } catch (error) {
-      throw new BadRequestException('Error listing users', error.message);
+      throw new InternalServerErrorException(error.message);
     }
   }
 

@@ -6,13 +6,17 @@ import {
   Patch,
   Param,
   Delete,
+  ConflictException,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { ApiConflictResponse, ApiCreatedResponse } from '@nestjs/swagger';
+import {
+  ApiConflictResponse,
+  ApiCreatedResponse,
+  ApiOkResponse,
+} from '@nestjs/swagger';
 import UserModel from './model/user.model';
-import { ConflictException } from './exceptions/exceptions';
 
 @Controller('users')
 export class UsersController {
@@ -27,10 +31,16 @@ export class UsersController {
     type: ConflictException,
   })
   @Post()
-  create(@Body() createUserDto: CreateUserDto) {
+  create(
+    @Body() createUserDto: CreateUserDto,
+  ): Promise<UserModel | ConflictException> {
     return this.usersService.create(createUserDto);
   }
 
+  @ApiOkResponse({
+    description: 'Users have been successfully retrieved.',
+    type: UserModel,
+  })
   @Get()
   findAll() {
     return this.usersService.findAll();
