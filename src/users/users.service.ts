@@ -38,7 +38,7 @@ export class UsersService {
       const users = await this.userModel.find().exec();
       if (!users.length) {
         console.log('No users found');
-        throw new NotFoundException('No users found');
+        return [];
       }
       return users;
     } catch (error) {
@@ -50,11 +50,14 @@ export class UsersService {
     try {
       const user = await this.userModel.findById(id).exec();
       if (!user) {
-        console.log('User not found');
-        throw new NotFoundException('User not found');
+        throw new NotFoundException();
       }
       return user;
     } catch (error) {
+      if (error.status === 404) {
+        console.log('User not found');
+        throw new NotFoundException('User not found');
+      }
       throw new InternalServerErrorException(error.message);
     }
   }
@@ -66,11 +69,14 @@ export class UsersService {
       const email = decodeURIComponent(unencodedEmail);
       const user = await this.userModel.findOne({ email }).exec();
       if (!user) {
-        console.log('User not found');
-        throw new NotFoundException('User not found');
+        throw new NotFoundException();
       }
       return user;
     } catch (error) {
+      if (error.status === 404) {
+        console.log('User not found');
+        throw new NotFoundException('User not found');
+      }
       throw new InternalServerErrorException(error.message);
     }
   }
@@ -84,11 +90,14 @@ export class UsersService {
         .findByIdAndUpdate(id, updateUserDto, { new: true })
         .exec();
       if (!user) {
-        console.log('User not found');
-        throw new NotFoundException('User not found');
+        throw new NotFoundException();
       }
       return user;
     } catch (error) {
+      if (error.status === 404) {
+        console.log('User not found');
+        throw new NotFoundException('User not found');
+      }
       throw new InternalServerErrorException(error.message);
     }
   }
@@ -98,11 +107,14 @@ export class UsersService {
       const id = new Types.ObjectId(unformattedId);
       const userToBeDeleted = await this.userModel.findByIdAndDelete(id).exec();
       if (!userToBeDeleted) {
-        console.log('User not found');
-        return 'User not found';
+        throw new NotFoundException();
       }
       return 'User successfully deleted';
     } catch (error) {
+      if (error.status === 404) {
+        console.log('User not found');
+        throw new NotFoundException('User not found');
+      }
       throw new InternalServerErrorException(error.message);
     }
   }
