@@ -33,7 +33,7 @@ export class UsersService {
   async findAll(): Promise<UserModel[] | IException> {
     try {
       const users = await this.userModel.find().exec();
-      if (!users) {
+      if (!users.length) {
         console.log('No users found');
       }
       return users;
@@ -42,8 +42,31 @@ export class UsersService {
     }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOne(id: string) {
+    try {
+      const user = await this.userModel.findById(id).exec();
+      if (!user) {
+        console.log('User not found');
+        return {};
+      }
+      return user;
+    } catch (error) {
+      throw new InternalServerErrorException(error.message);
+    }
+  }
+
+  async findByEmail(unencodedEmail: string) {
+    try {
+      const email = decodeURIComponent(unencodedEmail);
+      const user = await this.userModel.findOne({ email }).exec();
+      if (!user) {
+        console.log('User not found');
+        return {};
+      }
+      return user;
+    } catch (error) {
+      throw new InternalServerErrorException(error.message);
+    }
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {

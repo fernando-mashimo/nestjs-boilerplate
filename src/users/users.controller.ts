@@ -39,18 +39,35 @@ export class UsersController {
 
   @ApiOkResponse({
     description: 'Users have been successfully retrieved.',
-    type: UserModel,
+    type: [UserModel],
   })
   @Get()
   findAll() {
     return this.usersService.findAll();
   }
 
-  @Get(':id')
+  @ApiOkResponse({
+    description: 'User have been successfully retrieved.',
+    type: UserModel,
+  })
+  @Get('/id/:id')
   findOne(@Param('id') id: string) {
-    return this.usersService.findOne(+id);
+    return this.usersService.findOne(id);
   }
 
+  @ApiOkResponse({
+    description: 'User have been successfully retrieved by email.',
+    type: UserModel,
+  })
+  @Get('/email/:email')
+  findbyEmail(@Param('email') email: string) {
+    return this.usersService.findByEmail(email);
+  }
+
+  @ApiOkResponse({
+    description: 'User have been successfully updated.',
+    type: UserModel,
+  })
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.usersService.update(+id, updateUserDto);
