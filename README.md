@@ -1,12 +1,12 @@
 # 🚀 NestJS User Management Service
 
-This service part of a larger application, built using NestJS and Mongoose. It is responsible for handling all user-related operations.
+This service is part of a larger application, built using NestJS and Mongoose. It is responsible for handling all user-related operations.
 
 ## 🎯 Features
 
 - 📝 User Creation
 - 📚 Fetch All Users
-- 🔍 Fetch Single User by Email
+- 🔍 Fetch Single User by Id or Email
 - 🔄 Update User
 - ❌ Delete User
 
@@ -34,7 +34,7 @@ The files listed below play an important role in the deployment process:
 ## 💻 Running the Project Locally
 
 To run the project locally, you can use the following scripts:
-
+- `docker-compose up -d`: Installs and runs MongoDB container service.
 - `npm install`: Installs the project dependencies.
 - `npm run start:dev`: Starts the application in watch mode.
 
