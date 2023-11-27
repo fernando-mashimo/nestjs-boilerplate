@@ -1,16 +1,16 @@
-# NestJS User Management Service
+# 🚀 NestJS User Management Service
 
-This service is a part of a larger application, built using NestJS and Mongoose. It is responsible for handling basic user-related operations.
+This service is a part of a larger application, built using NestJS and Mongoose. It is responsible for handling all user-related operations.
 
-## Features
+## 🎯 Features
 
-- User Creation
-- Fetch All Users
-- Fetch Single User by Email
-- Update User
-- Delete User
+- 📝 User Creation
+- 📚 Fetch All Users
+- 🔍 Fetch Single User by Email
+- 🔄 Update User
+- ❌ Delete User
 
-## Main Packages
+## 📦 Main Packages
 
 - `@nestjs/common`: Provides essential NestJS decorators and utility functions.
 - `@nestjs/config`: Configuration handling module for NestJS.
@@ -22,7 +22,7 @@ This service is a part of a larger application, built using NestJS and Mongoose.
 - `@vendia/serverless-express`: Library to run serverless applications on AWS Lambda.
 - `aws-lambda`: AWS Lambda Typescript definitions.
 
-## Automated Deployment via GitHub Actions and AWS Lambda
+## 🚀 Automated Deployment via GitHub Actions and AWS Lambda
 
 This project is set up to use GitHub Actions for continuous integration and deployment to AWS Lambda. Any changes pushed to the main branch will automatically trigger a build and deployment process.
 
@@ -31,23 +31,23 @@ The files listed below play an important role in the deployment process:
 - `serverless.yml`: sets the deployment of the application in a serverless cloud infrastructure (AWS Lambda).
 - `src/serverless.ts`: starts the application on the deployment environment.
 
-## Running the Project Locally
+## 💻 Running the Project Locally
 
 To run the project locally, you can use the following scripts:
 
 - `npm install`: Installs the project dependencies.
 - `npm run start:dev`: Starts the application in watch mode.
 
-## Postman Collection
+## 📮 Postman Collection
 
 A Postman collection is available in the `dev-utilities` folder to help you interact with the API endpoints.
 
 To use this service, you need to make HTTP requests to the appropriate endpoints. For example, to create a user, you would send a POST request to the `/users` endpoint with the user's details in the request body.
 
-## Contributing
+## 🤝 Contributing
 
 Contributions are welcome. Please make sure to update the code as appropriate.
 
-## License
+## 📄 License
 
 UNLICENSED
