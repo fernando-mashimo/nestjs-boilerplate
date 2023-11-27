@@ -22,7 +22,7 @@ This service is a part of a larger application, built using NestJS and Mongoose.
 - `@vendia/serverless-express`: Library to run serverless applications on AWS Lambda.
 - `aws-lambda`: AWS Lambda Typescript definitions.
 
-## Automated Deployment
+## Automated Deployment via GitHub Actions and AWS Lambda
 
 This project is set up to use GitHub Actions for continuous integration and deployment to AWS Lambda. Any changes pushed to the main branch will automatically trigger a build and deployment process.
 
