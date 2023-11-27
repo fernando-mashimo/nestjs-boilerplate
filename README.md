@@ -24,7 +24,7 @@ This service is a part of a larger application, built using NestJS and Mongoose.
 
 ## 🚀 Automated Deployment via GitHub Actions and AWS Lambda
 
-This project is set up to use GitHub Actions for continuous integration and deployment to AWS Lambda. Any changes pushed to the main branch will automatically trigger a build and deployment process.
+This project is set up to use GitHub Actions for continuous integration and deployment to AWS Lambda. Any changes pushed to the `deploy` branch will automatically trigger a build and deployment process.
 
 The files listed below play an important role in the deployment process:
 - `.github/workflows/main.yml`: drives the automated deployment process by GitHub Actions.
