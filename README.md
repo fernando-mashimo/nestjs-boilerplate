@@ -1,6 +1,6 @@
 # 🚀 NestJS User Management Service
 
-This service is a part of a larger application, built using NestJS and Mongoose. It is responsible for handling all user-related operations.
+This service part of a larger application, built using NestJS and Mongoose. It is responsible for handling all user-related operations.
 
 ## 🎯 Features
 
