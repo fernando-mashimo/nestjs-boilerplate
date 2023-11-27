@@ -42,8 +42,6 @@ To run the project locally, you can use the following scripts:
 
 A Postman collection is available in the `dev-utilities` folder to help you interact with the API endpoints.
 
-## How to Use
-
 To use this service, you need to make HTTP requests to the appropriate endpoints. For example, to create a user, you would send a POST request to the `/users` endpoint with the user's details in the request body.
 
 ## Contributing
