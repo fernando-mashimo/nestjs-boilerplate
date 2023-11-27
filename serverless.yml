@@ -1,0 +1,22 @@
+service: users-microservice
+
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-jetpack
+
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: prod
+  region: sa-east-1
+  environment:
+    PORT: ${env:PORT}
+    MONGODB_URI: ${env:MONGODB_URI}
+
+functions:
+  users-microservice:
+    handler: dist/serverless.handler
+    events:
+      - httpApi: '*'
