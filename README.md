@@ -1,73 +1,55 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# NestJS User Management Service
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+This service is a part of a larger application, built using NestJS and Mongoose. It is responsible for handling basic user-related operations.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Features
 
-## Description
+- User Creation
+- Fetch All Users
+- Fetch Single User by Email
+- Update User
+- Delete User
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Main Packages
 
-## Installation
+- `@nestjs/common`: Provides essential NestJS decorators and utility functions.
+- `@nestjs/config`: Configuration handling module for NestJS.
+- `@nestjs/core`: The core module of NestJS, a framework for building efficient, reliable and scalable server-side applications.
+- `@nestjs/mongoose`: Mongoose module for NestJS.
+- `@nestjs/platform-express`: The express platform layer implementation for NestJS.
+- `@nestjs/swagger`: Used for API documentation.
+- `mongoose`: MongoDB object modeling tool designed to work in an asynchronous environment.
+- `@vendia/serverless-express`: Library to run serverless applications on AWS Lambda.
+- `aws-lambda`: AWS Lambda Typescript definitions.
 
-```bash
-$ npm install
-```
+## Automated Deployment
 
-## Running the app
+This project is set up to use GitHub Actions for continuous integration and deployment to AWS Lambda. Any changes pushed to the main branch will automatically trigger a build and deployment process.
 
-```bash
-# development
-$ npm run start
+The files listed below play an important role in the deployment process:
+- `.github/workflows/main.yml`: drives the automated deployment process by GitHub Actions.
+- `serverless.yml`: sets the deployment of the application in a serverless cloud infrastructure (AWS Lambda).
+- `src/serverless.ts`: starts the application on the deployment environment.
 
-# watch mode
-$ npm run start:dev
+## Running the Project Locally
 
-# production mode
-$ npm run start:prod
-```
+To run the project locally, you can use the following scripts:
 
-## Test
+- `npm install`: Installs the project dependencies.
+- `npm run start:dev`: Starts the application in watch mode.
 
-```bash
-# unit tests
-$ npm run test
+## Postman Collection
 
-# e2e tests
-$ npm run test:e2e
+A Postman collection is available in the `dev-utilities` folder to help you interact with the API endpoints.
 
-# test coverage
-$ npm run test:cov
-```
+## How to Use
 
-## Support
+To use this service, you need to make HTTP requests to the appropriate endpoints. For example, to create a user, you would send a POST request to the `/users` endpoint with the user's details in the request body.
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## Contributing
 
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+Contributions are welcome. Please make sure to update the code as appropriate.
 
 ## License
 
-Nest is [MIT licensed](LICENSE).
+UNLICENSED
