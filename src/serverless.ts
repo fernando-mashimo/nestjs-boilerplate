@@ -5,6 +5,7 @@ import pino from 'pino';
 
 import { configure as serverlessExpress } from '@vendia/serverless-express';
 import { NestApplicationOptions } from '@nestjs/common';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 let server: Handler;
 
@@ -22,6 +23,15 @@ async function bootstrapServer() {
   };
 
   const app = await NestFactory.create(AppModule, applicationOptions);
+
+  const swaggerConfig = new DocumentBuilder()
+    .setTitle('User Service')
+    .setDescription('User API')
+    .setVersion('1.0')
+    .addTag('user')
+    .build();
+  const document = SwaggerModule.createDocument(app, swaggerConfig);
+  SwaggerModule.setup('api', app, document);
 
   await app.init();
 
