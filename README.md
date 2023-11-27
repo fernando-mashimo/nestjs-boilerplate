@@ -27,15 +27,15 @@ This service is part of a larger application, built using NestJS and Mongoose. I
 This project is set up to use GitHub Actions for continuous integration and deployment to AWS Lambda. Any changes pushed to the `deploy` branch will automatically trigger a build and deployment process.
 
 The files listed below play an important role in the deployment process:
-- `.github/workflows/main.yml`: drives the automated deployment process by GitHub Actions.
+- `github/workflows/main.yml`: drives the automated deployment process by GitHub Actions.
 - `serverless.yml`: sets the deployment of the application in a serverless cloud infrastructure (AWS Lambda).
 - `src/serverless.ts`: starts the application on the deployment environment.
 
 ## 💻 Running the Project Locally
 
 To run the project locally, you can use the following scripts:
-- `docker-compose up -d`: Installs and runs MongoDB container service.
 - `npm install`: Installs the project dependencies.
+- `docker-compose up -d`: Installs and runs MongoDB container service.
 - `npm run start:dev`: Starts the application in watch mode.
 
 ## 📮 Postman Collection
